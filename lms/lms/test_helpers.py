@@ -76,7 +76,7 @@ class BaseTestUtils(IntegrationTestCase):
 		course.update(
 			{
 				"title": title,
-				"short_introduction": "A course to test utilities of Frappe Learning",
+				"short_introduction": "A course to test utilities of MenaLearn",
 				"description": "This is a detailed description of the Utility Course.",
 				"tags": "Frappe,Learning,Utility",
 				"category": "Business",

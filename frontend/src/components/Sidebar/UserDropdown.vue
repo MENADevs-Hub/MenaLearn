@@ -10,6 +10,29 @@
 			</template>
 			<template v-slot="{ open, close }">
 				<button
+					v-if="!isCollapsed && branding.data?.banner_image"
+					class="flex flex-col gap-1 rounded-5 px-2 py-2 w-52 duration-300 ease-in-out"
+					:class="open ? 'bg-surface-base shadow-sm' : 'hover:bg-surface-gray-3'"
+				>
+					<div class="flex w-full items-center justify-between">
+						<img
+							:src="safeUrl(branding.data?.banner_image.file_url)"
+							alt=""
+							class="h-7 w-auto max-w-[9.5rem] object-contain flex-shrink-0"
+						/>
+						<span
+							class="lucide-chevron-down h-4 w-4 text-ink-gray-7 flex-shrink-0"
+						/>
+					</div>
+					<div
+						v-if="userResource.data"
+						class="w-full text-start text-p-sm text-ink-gray-7 truncate"
+					>
+						{{ convertToTitleCase(userResource.data?.full_name) }}
+					</div>
+				</button>
+				<button
+					v-else
 					class="flex h-12 items-center rounded-5 duration-300 ease-in-out"
 					:class="
 						isCollapsed
@@ -23,18 +46,21 @@
 						v-if="branding.data?.banner_image"
 						:src="safeUrl(branding.data?.banner_image.file_url)"
 						alt=""
-						class="w-8 h-8 rounded-4 flex-shrink-0"
+						class="h-8 w-8 object-contain flex-shrink-0"
 					/>
 					<LMSLogo v-else class="w-8 h-8 rounded-4 flex-shrink-0" />
 					<div
-						class="flex flex-1 flex-col text-start duration-300 ease-in-out"
+						class="flex flex-1 min-w-0 flex-col text-start duration-300 ease-in-out"
 						:class="
 							isCollapsed
 								? 'opacity-0 ms-0 w-0 overflow-hidden'
 								: 'opacity-100 ms-2 w-auto'
 						"
 					>
-						<div class="text-p-base-medium text-ink-gray-9">
+						<div
+							v-if="!branding.data?.banner_image"
+							class="text-p-base-medium text-ink-gray-9 truncate"
+						>
 							<span
 								v-if="
 									branding.data?.app_name && branding.data?.app_name != 'Frappe'
@@ -46,7 +72,7 @@
 						</div>
 						<div
 							v-if="userResource.data"
-							class="-mt-0.5 text-p-sm text-ink-gray-7"
+							class="-mt-0.5 text-p-sm text-ink-gray-7 truncate"
 						>
 							{{ convertToTitleCase(userResource.data?.full_name) }}
 						</div>
@@ -305,7 +331,7 @@ const clearDemoDataConfirmation = () => {
 	$dialog({
 		title: __('Confirm clearing demo data?'),
 		message: __(
-			'Are you sure you want to clear the demo data? This would delete the course "A guide  to Frappe Learning" along with all its associated data. This action cannot be undone.'
+			'Are you sure you want to clear the demo data? This would delete the course "A guide  to MenaLearn" along with all its associated data. This action cannot be undone.'
 		),
 		actions: [
 			{

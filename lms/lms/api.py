@@ -2477,7 +2477,7 @@ def get_progress_distribution(progressList: list):
 @frappe.whitelist(allow_guest=True)
 def get_pwa_manifest():
 	"""Web app manifest for installing the LMS as a PWA."""
-	title = frappe.db.get_single_value("Website Settings", "app_name") or "Frappe Learning"
+	title = frappe.db.get_single_value("Website Settings", "app_name") or "MenaLearn"
 	route = get_lms_route()
 
 	# `display` was absent, so it defaulted to "browser" and the installed app
@@ -3092,11 +3092,11 @@ def get_badges(member: str):
 @frappe.whitelist()
 def clear_demo_data():
 	frappe.only_for("Moderator")
-	quiz_title = "Do you know Frappe Learning?"
+	quiz_title = "Do you know MenaLearn?"
 	if frappe.db.exists("LMS Quiz", {"title": quiz_title}):
 		frappe.db.delete("LMS Quiz", {"title": quiz_title})
 
-	demo_course = frappe.get_all("LMS Course", {"title": "A guide to Frappe Learning"}, pluck="name")
+	demo_course = frappe.get_all("LMS Course", {"title": "A guide to MenaLearn"}, pluck="name")
 
 	if len(demo_course):
 		delete_course(demo_course[0])

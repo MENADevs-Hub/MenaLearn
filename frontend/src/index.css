@@ -1,6 +1,83 @@
 @import 'frappe-ui/style.css';
 @import './styles/blockEditor.css';
 
+/* MenaDevs brand recolor. frappe-ui's `blue` family is the one semantic hue
+   used for accents that aren't tied to a status meaning: links (ink-blue-link),
+   focus rings, info-style surfaces, and the few explicit `theme="blue"`
+   buttons. `gray` (most buttons' default) and the status hues (`green` = success,
+   `red` = error) are left untouched, so recoloring `blue` restyles the brand
+   accent everywhere it's used without touching anything load-bearing for
+   contrast or meaning. Each value below is frappe-ui's own blue token at that
+   name, with only the oklch hue swapped to MenaDevs green (142.297, sampled
+   from the logo's #3CE533) — lightness and chroma are kept identical, so
+   contrast ratios and the light/dark pairing frappe-ui already verified are
+   preserved exactly, just repainted. */
+:root {
+	--surface-blue-1: oklch(0.976 0.011 142.297);
+	--surface-blue-2: oklch(0.96 0.021 142.297);
+	--surface-blue-3: oklch(0.925 0.039 142.297);
+	--surface-blue-4: oklch(0.88 0.061 142.297);
+	--surface-blue-5: oklch(0.73 0.121 142.297);
+	--surface-blue-6: oklch(0.641 0.186 142.297);
+	--surface-blue-7: oklch(0.587 0.174 142.297);
+	--surface-blue-8: oklch(0.561 0.168 142.297);
+	--surface-blue-9: oklch(0.477 0.149 142.297);
+	--surface-blue-10: oklch(0.396 0.113 142.297);
+	--ink-blue-1: oklch(0.96 0.021 142.297);
+	--ink-blue-2: oklch(0.925 0.039 142.297);
+	--ink-blue-3: oklch(0.88 0.061 142.297);
+	--ink-blue-4: oklch(0.73 0.121 142.297);
+	--ink-blue-5: oklch(0.641 0.186 142.297);
+	--ink-blue-6: oklch(0.587 0.174 142.297);
+	--ink-blue-7: oklch(0.561 0.168 142.297);
+	--ink-blue-8: oklch(0.477 0.149 142.297);
+	--ink-blue-9: oklch(0.396 0.113 142.297);
+	--ink-blue-link: oklch(0.641 0.186 142.297);
+	--outline-blue-1: oklch(0.96 0.021 142.297);
+	--outline-blue-2: oklch(0.925 0.039 142.297);
+	--outline-blue-3: oklch(0.88 0.061 142.297);
+	--outline-blue-4: oklch(0.73 0.121 142.297);
+	--outline-blue-5: oklch(0.641 0.186 142.297);
+	--outline-blue-6: oklch(0.587 0.174 142.297);
+	--outline-blue-7: oklch(0.561 0.168 142.297);
+	--outline-blue-8: oklch(0.477 0.149 142.297);
+	--outline-blue-9: oklch(0.396 0.113 142.297);
+	--outline-blue-10: oklch(0.309 0.104 142.297);
+}
+
+:root[data-theme='dark'] {
+	--surface-blue-1: oklch(0.255 0.056 142.297);
+	--surface-blue-2: oklch(0.305 0.092 142.297);
+	--surface-blue-3: oklch(0.327 0.098 142.297);
+	--surface-blue-4: oklch(0.397 0.117 142.297);
+	--surface-blue-5: oklch(0.463 0.136 142.297);
+	--surface-blue-6: oklch(0.538 0.154 142.297);
+	--surface-blue-7: oklch(0.586 0.143 142.297);
+	--surface-blue-8: oklch(0.671 0.155 142.297);
+	--surface-blue-9: oklch(0.777 0.112 142.297);
+	--surface-blue-10: oklch(0.849 0.063 142.297);
+	--ink-blue-1: oklch(0.327 0.098 142.297);
+	--ink-blue-2: oklch(0.397 0.117 142.297);
+	--ink-blue-3: oklch(0.463 0.136 142.297);
+	--ink-blue-4: oklch(0.538 0.154 142.297);
+	--ink-blue-5: oklch(0.586 0.143 142.297);
+	--ink-blue-6: oklch(0.671 0.155 142.297);
+	--ink-blue-7: oklch(0.777 0.112 142.297);
+	--ink-blue-8: oklch(0.849 0.063 142.297);
+	--ink-blue-9: oklch(0.896 0.038 142.297);
+	--ink-blue-link: oklch(0.538 0.154 142.297);
+	--outline-blue-1: oklch(0.305 0.092 142.297);
+	--outline-blue-2: oklch(0.327 0.098 142.297);
+	--outline-blue-3: oklch(0.397 0.117 142.297);
+	--outline-blue-4: oklch(0.463 0.136 142.297);
+	--outline-blue-5: oklch(0.538 0.154 142.297);
+	--outline-blue-6: oklch(0.586 0.143 142.297);
+	--outline-blue-7: oklch(0.671 0.155 142.297);
+	--outline-blue-8: oklch(0.777 0.112 142.297);
+	--outline-blue-9: oklch(0.849 0.063 142.297);
+	--outline-blue-10: oklch(0.896 0.038 142.297);
+}
+
 /* Nothing has ever painted the document. frappe-ui's style.css declares the
    theme variables but sets no background on html or body, so the canvas stayed
    the user agent's white no matter what `data-theme` said. Light mode hid that

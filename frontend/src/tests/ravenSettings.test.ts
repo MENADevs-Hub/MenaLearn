@@ -130,7 +130,7 @@ import MassRemovalConfirmDialog from '@/components/Settings/Raven/MassRemovalCon
 const DECLARATIONS = [
 	{
 		name: 'LMS',
-		label: 'Frappe Learning',
+		label: 'MenaLearn',
 		rule_types: [
 			{
 				type: 'Student',
